@@ -1,0 +1,1756 @@
+//Eunice Stephanie Emata
+//BSIT 2-1 PROGRAMMING
+using System;
+using System.Collections.Generic;
+
+namespace Finals
+{
+	internal class program
+	{
+		static void Main(string [] args)
+		{
+			//main method
+			Console.WriteLine("--------------------------------------------------------------------------------");
+		    Console.WriteLine("    *****  *****  *    * *     * ***** ****  ******* *****  *****  *    *      ");
+		    Console.WriteLine("   *      *     * * *  *  *   *  ***** *   *    *      *   *     * * *  *      ");
+		    Console.WriteLine("   *      *     * *  * *   * *   *     * *      *      *   *     * *  * *      ");
+		    Console.WriteLine("    *****  *****  *    *    *    ***** *    *   *    *****  *****  *    *      ");
+		    Console.WriteLine("--------------------------------------------------------------------------------");
+			Console.WriteLine("                           Select A if your an Admin.");
+			Console.WriteLine("                           Select U if your an Admin.");Line();Space();
+			Console.Write("Enter your choice: "); 
+			string choice = Console.ReadLine();
+			
+		    switch(choice)
+			{
+				case "A":  //If the user choose A, the code will ask for a password which can only be open by the Admin. 
+				    PassCode(); //passcode can be seen in the passcode method.
+					break;
+                case "U": //If the user choose U, the code will continue the code to the main menu.
+                    MainMenu();
+                    UserActivity();					
+				    Looping();
+					break;
+				default:
+			        Console.WriteLine("Enter Capital LETTER only!! Please try again.");
+					Main(null);
+			        break;
+			}
+		}
+		static void PassCode() //Asking the Admin for passcode.
+		{
+			Console.Write("Please Enter your Passcode: "); 
+			string passcode = Console.ReadLine();
+             
+            if (passcode == "ganda"){  // PASSCODE IS "ganda" only!!
+				ExitIdol();} //If the admin puut the right passcode the code will exit.
+			else {
+				Console.WriteLine("Incorrect Passcode! please re-enter your passcode."); //If the admin input the wrong passcode the code will continue to ask for passcode until the right passcode was inputted. 
+				PassCode();} 
+		}
+		static void MainMenu() //Display Options
+		{
+			Line();Space();
+		    Console.WriteLine("                           SELECT PREFERRED ACTIVITY");
+		    Line();;Space();
+		    Console.WriteLine("               Type VIEW/view to view Philippine Peso exchange rates");Space();
+		    Console.WriteLine("               Type INTERN/intern to convert ANY currency to other currencies");Space();
+		    Console.WriteLine("               Type LOCAL/local to convert PHP currency to other currencies ");
+		    Line();Space();
+		}
+		
+		static void ViewRates() //Amount of 1 currency when converted to peso
+		{
+			Space();
+			Console.WriteLine("_________________________PHILIPINE PESO EXCHANGE RATES___________________________");
+			Console.WriteLine("_____________ Display 1 currency is equivalent to Philippine peso________________");Space();
+			Console.WriteLine("       CURRENCIES                                       EXCHANGE RATES ");
+			Line();Space();
+		    Console.WriteLine("  AUD - Australian Dollar                                    36.93");Space();
+			Console.WriteLine("  BHD - Bahraini Dinar                                       1145.93");Space();
+			Console.WriteLine("  GBP - British Pound                                        65.61");Space();
+			Console.WriteLine("  CAD - Canadian Dollar                                      40.27");Space();
+			Console.WriteLine("  CNY - Chinese Yuan Renminbi                                7.29");Space();
+			Console.WriteLine("  DKK - Danish Krone                                         7.78");Space();
+			Console.WriteLine("  AED - Emirati Dirham                                       14.95");Space();
+			Console.WriteLine("  EUR - Euro                                                 58.06");Space();
+			Console.WriteLine("  HKD - Hong Kong Dollar                                     7.00");Space();
+			Console.WriteLine("  INR - Indian Rupee                                         0.66");Space();
+			Console.WriteLine("  JPY - Japanese Yen                                         0.40");Space();
+			Console.WriteLine("  KWD - Kuwaiti Dinar                                        179.50");Space();
+			Console.WriteLine("  MYR - Malaysian Ringgit                                    12.38");Space();
+			Console.WriteLine("  MXN - Mexican Peso                                         2.99");Space();
+			Console.WriteLine("  NZD - New Zealand Dollar                                   33.84");Space();
+			Console.WriteLine("  QAR - Qatari Riyal                                         15.08");Space();
+			Console.WriteLine("  SAR - Saudi Arabia Riyal                                   14.65");Space();
+			Console.WriteLine("  SGD - Singapore Dollar                                     40.68");Space();
+			Console.WriteLine("  SEK - Swedish Krona                                        5.23");Space();
+			Console.WriteLine("  CHF - Swiss Franc                                          58.40");Space();
+			Console.WriteLine("  THB - Thai Baht                                            1.57");Space();
+			Console.WriteLine("  USD - US Dollar                                            54.92");
+			Line();
+		}
+		
+		static void UserActivity() //Get User Option
+		{
+            Console.Write("Input your choice: ");
+		    string choice = Console.ReadLine();
+			
+			if (choice == "view" || choice == "VIEW"){ 
+		        ViewRates();}
+			else if (choice == "intern" || choice == "INTERN"){
+				ConvertionRates();}	
+			else if (choice == "local" || choice == "LOCAL"){
+		     	LocalConvertion();}
+			else{
+			    Console.WriteLine("I can't find your input. Please choose in the available option.");
+			    UserActivity();}
+		}	
+
+		
+		static void ConvertionRates() //International Convertion ANY TO ANY CURRENCY
+		{
+			AvailableRates();
+			Space();
+			Console.Write("Enter amount you want to convert:  ");
+			double num = Convert.ToDouble(Console.ReadLine());
+			Line();
+			
+		
+			Space();
+			Console.WriteLine("Input currency: ex.USD");Space();
+			Console.Write("From: "); //UserCurrency
+			string cur1 =  Console.ReadLine();
+			
+			    if (cur1 == "AUD" || cur1 == "aud"){ //1 AUD - Australian Dollar convert to any currency available
+						        Space();
+						        Console.Write("To: "); //User Choice of Currency to convert
+						        string cur2 = Console.ReadLine();Space();
+						            if (cur2 == "BHD" || cur2 == "bhd"){ 
+									    double n = num * 0.25;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " BHD");}
+			                        else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.56;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " GBP");}
+						            else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.92;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " CAD");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 4.68;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2) + " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 4.75;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2) + " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 2.47;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2) + " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.64;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2) + " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 5.28;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 55.77;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 92.11;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.21;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " BHD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 2.98;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 12.37;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 2.45;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 2.52;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.91;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ 	" SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 884.35;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 7.06;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.63;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 23.54;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.67;
+									         Console.WriteLine("You converted "+ num+ " AUD to " + Math.Round(n,2)+ " USD");}
+					   }
+					else if (cur1 == "BHD" || cur1 == "bhd"){ //1 BHD - Bahraini Dinar convert to any currency available 
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+						            if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 3.95;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " AUD");}
+			                        else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 2.22;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " GBP");}
+						            else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 3.62;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " CAD");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 18.48;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 18.76;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 9.76;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 2.51;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 20.86;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 220.35;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 362.66;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.82;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 11.79;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 48.86;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 9.67;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 9.96;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 3.59;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 3493.64;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 27.91;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 2.50;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 92.79;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+ " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 2.66;
+									         Console.WriteLine("You converted "+ num+ " BHD to "+ Math.Round(n,2)+  " USD");}
+					}
+					else if (cur1 == "GBP" || cur1 == "gbp"){ //1 GBP - British Pound convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+						            if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.78;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.45;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " BHD");}
+						            else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 1.63;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 8.31;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 8.43;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 4.39;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 1.13;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 9.38;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 99.07;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 163.68;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.37;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 5.30;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 21.97;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 4.35;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 4.48;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 1.61;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 1570.75;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 12.55;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 1.12;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 41.72;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 1.19;
+									         Console.WriteLine("You converted "+ num+ " GBP to "+ Math.Round(n,2)+  " USD");}
+					}
+					else if (cur1 == "CAD" || cur1 == "cad"){ //1 CAD - Canadian Dollar convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+						            if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.09;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.28;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " BHD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.61;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 5.10;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 5.18;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 2.96;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.70;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 5.76;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 60.81;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 100.07;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.23;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 3.25;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 18.48;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 2.67;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 2.75;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.99;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 964.11;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 7.70;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.69;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 25.71;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.73;
+									         Console.WriteLine("You converted "+ num+ " CAD to "+ Math.Round(n,2)+  " USD");}
+					}
+					else if (cur1 == "CNY" || cur1 == "cny"){ //1 CNY - Chinese Yuan Renminbi convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.21;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.054;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.12;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 1.01;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.53;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.14;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 1.13;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 11.92;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 19.62;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.044;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.64;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 2.64;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.52;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.54;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.19;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 189.01;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 1.51;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.14;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 5.02;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.14;
+									         Console.WriteLine("You converted "+ num+ " CNY to "+ Math.Round(n,2)+  " USD");}
+					}
+						else if (cur1 == "DKK" || cur1 == "dkk"){ //1 DKK - Danish Krone convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.21;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.053;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.19;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.12;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.99;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.52;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 1.11;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 11.75;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 19.34;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.043;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.63;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 2.60;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.52;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.53;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.19;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 186.26;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 1.49;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 4.95;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.14;
+									         Console.WriteLine("You converted "+ num+ " DKK to "+ Math.Round(n,2)+  " USD");}
+						}	
+					else if (cur1 == "AED" || cur1 == "aed"){ //1 AED - Emirati Dirham convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.40;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.10;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.37;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.23;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 1.89;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 1.92;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.26;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 2.14;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 22.58;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 37.16;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.083;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 1.21;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 5.01;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.99;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 1.02;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.37;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 357.95;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 2.86;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.26;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 9.51;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.27;
+									         Console.WriteLine("You converted "+ num+ " AED to "+ Math.Round(n,2)+  " USD");}				
+					}
+					else if (cur1 == "EUR" || cur1 == "eur"){ //1 EUR - Euro convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.57;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.40;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 1.44;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.88;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 7.35;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 7.44;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 3.88;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 8.31;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 87.67;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 144.46;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.32;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 4.69;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 19.40;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 3.85;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 3.96;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 1.43;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 1390.07;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 11.13;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.99;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 36.92;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 1.06;
+									         Console.WriteLine("You converted "+ num+ " EUR to "+ Math.Round(n,2)+  " USD");}
+					}
+						else if (cur1 == "HKD" || cur1 == "hkd"){ //1 HKD - Hong Kong Dollar convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.19;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.048;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.17;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.11;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.89;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.90;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.47;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.12;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 10.56;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 17.39;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.039;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.57;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 2.34;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.46;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.48;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.17;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 167.50;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 1.34;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.12;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 4.45;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " HKD to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "INR" || cur1 == "inr"){ //1 INR - Indian Rupee convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.018;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.0045;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.016;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.010;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.084;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.085;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.044;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.011;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.095;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 1.65;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.0037;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.053;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 0.22;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.044;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.045;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.016;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 15.86;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.011;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 0.42;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.012;
+									         Console.WriteLine("You converted "+ num+ " INR to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "JPY" || cur1 == "jpy"){ //1 JPY - Japanese Yen convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.011;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.0028;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.0100;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.0061;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.051;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.052;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.0069;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 0.61;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.058;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " HKD");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.0022;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.033;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.0099;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 9.63;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 0.077;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.0069;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 0.26;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.0073;
+									         Console.WriteLine("You converted "+ num+ " JPY to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "KWD" || cur1 == "kwd"){ //1 KWD - Kuwaiti Dinar convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 4.86;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 1.23;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 4.46;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 2.74;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 22.74;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 23.07;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 12.00;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 3.09;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 271.04;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 446.10;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 25.66;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " hkd");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 14.50;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 60.10;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 11.90;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 12.25;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 4.41;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 4297.39;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 34.34;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 3.07;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 114.14;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 3.27;
+									         Console.WriteLine("You converted "+ num+ " KWD to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "MYR" || cur1 == "myr"){ //1 MYR - Malaysian Ringgit convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.33;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.085;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.31;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.19;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 1.57;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 1.59;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.83;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.21;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 18.70;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 30.79;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.069;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 1.77;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 4.15;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.82;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.85;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.30;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 296.43;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 2.37;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.21;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 7.87;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.23;
+									         Console.WriteLine("You converted "+ num+ " MYR to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "MXN" || cur1 == "mxn"){ //1 MXN - Mexican Peso convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.081;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.020;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.074;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.046;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.38;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.38;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.051;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 4.51;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 7.42;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.017;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.24;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.43;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.073;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 71.51;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 0.57;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.051;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 1.90;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.054;
+									         Console.WriteLine("You converted "+ num+ " MXN to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "QAR" || cur1 == "qar"){ //1 QAR - Qatari Riyal convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.41;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.10;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.37;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.23;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 1.91;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 1.94;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 1.01;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.26;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 22.78;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 37.49;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.084;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 1.22;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 5.05;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 2.16;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 1.03;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.37;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 361.11;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 2.89;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.26;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 9.59;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.27;
+									         Console.WriteLine("You converted "+ num+ " QAR to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "SAR" || cur1 == "sar"){ //1 SAR - Saudi Arabia RiyaL convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.40;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.10;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.36;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.22;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 1.86;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 1.88;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.98;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.25;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 22.12;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 36.40;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.082;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 1.18;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 4.90;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.97;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 2.09;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.36;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 350.67;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 2.80;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.25;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 9.31;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.27;
+									         Console.WriteLine("You converted "+ num+ " SAR to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "SGD" || cur1 == "sgd"){ //1 SGD - Singapore Dollar convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.10;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.28;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 1.01;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.62;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 5.15;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 5.23;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 2.72;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.70;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 61.43;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 101.11;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.23;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 3.29;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 13.63;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 2.70;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 2.78;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 5.83;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 973.94;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 7.74;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.70;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 25.87;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.74;
+									         Console.WriteLine("You converted "+ num+ " SGD to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "KRW" || cur1 == "krw"){ //1 KRW - South Korean Won convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.0011;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.00029;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.0010;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.00064;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.0053;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.0054;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.0028;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.00072;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 0.063;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 0.10;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.00023;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.0034;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 0.014;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.0028;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.0029;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.0010;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.0060;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 0.0079;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.00072;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.00076;
+									         Console.WriteLine("You converted "+ num+ " KRW to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "SEK" || cur1 == "sek"){ //1 SEK - Swedish Kron convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.14;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.036;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.080;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.66;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.67;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.35;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.091;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 7.89;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 12.99;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.029;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.42;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 1.75;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.35;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.36;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.75;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 125.16;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.090;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 3.32;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.095;
+									         Console.WriteLine("You converted "+ num+ " SEK to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "CHF" || cur1 == "chf"){ //1 CHF - Swiss Franc convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.58;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.40;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 1.45;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.89;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 7.40;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 7.51;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 3.91;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 1.00;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 88.18;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 145.14;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " JPY");}
+						            else  if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.33;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 4.72;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 19.55;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 3.87;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 3.99;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 1.44;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 8.35;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 77.17;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 1398.21;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 37.20;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 1.06;
+									         Console.WriteLine("You converted "+ num+ " CHF to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "THB" || cur1 == "thb"){ //1 THB - Thai Baht convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 0.043;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.011;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 0.039;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.024;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 0.20;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 0.11;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 2.37;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 0.67;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " JPY");}
+						            else  if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.0088;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 0.13;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 0.53;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 0.10;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 0.11;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 0.039;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 0.22;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 0.30;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.027;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 37.65;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " KRW");}
+						            else  if (cur2 == "USD" || cur2 == "usd"){
+										double n = num * 0.029;
+									         Console.WriteLine("You converted "+ num+ " THB to "+ Math.Round(n,2)+  " USD");}			
+						    }
+							else if (cur1 == "USD" || cur1 == "usd"){ //1 USD - US Dollar convert to any currency available
+						        Space();
+						        Console.Write("To: ");
+						        string cur2 = Console.ReadLine();Space();       
+                                    if (cur2 == "AUD" || cur2 == "aud"){
+										double n = num * 1.49;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " AUD");}
+			                        else  if (cur2 == "BHD" || cur2 == "bhd"){
+										double n = num * 0.38;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " BHD");}
+									else  if (cur2 == "CAD" || cur2 == "cad"){
+										double n = num * 1.36;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " CAD");}
+						            else  if (cur2 == "GBP" || cur2 == "gbp"){
+										double n = num * 0.84;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " GBP");}
+						            else  if (cur2 == "CNY" || cur2 == "cny"){
+										double n = num * 6.96;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " CNY");}
+						            else  if (cur2 == "DKK" || cur2 == "dkk"){
+										double n = num * 7.06;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " DKK");}
+						            else  if (cur2 == "AED" || cur2 == "aed"){
+										double n = num * 3.67;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " AED");}
+						            else  if (cur2 == "EUR" || cur2 == "eur"){
+										double n = num * 0.94;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " EUR");}
+						            else  if (cur2 == "INR" || cur2 == "inr"){
+										double n = num * 82.93;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " INR");}
+						            else  if (cur2 == "JPY" || cur2 == "jpy"){
+										double n = num * 136.49;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " JPY");}
+						            else if (cur2 == "KWD" || cur2 == "kwd"){
+										double n = num * 0.31;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " KWD");}
+			                        else  if (cur2 == "MYR" || cur2 == "myr"){
+										double n = num * 4.44;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " MYR");}
+						            else  if (cur2 == "MXN" || cur2 == "mxn"){
+										double n = num * 18.39;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " MXN");}
+						            else  if (cur2 == "QAR" || cur2 == "qar"){
+										double n = num * 3.64;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " QAR");}
+						            else  if (cur2 == "SAR" || cur2 == "sar"){
+										double n = num * 3.75;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " SAR");}
+						            else  if (cur2 == "SGD" || cur2 == "sgd"){
+										double n = num * 1.35;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " SGD");}
+						            else  if (cur2 == "HKD" || cur2 == "hkd"){
+										double n = num * 7.85;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " HKD");}
+						            else  if (cur2 == "SEK" || cur2 == "sek"){
+										double n = num * 10.51;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " SEK");}
+						            else  if (cur2 == "CHF" || cur2 == "chf"){
+										double n = num * 0.94;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " CHF");}
+						            else  if (cur2 == "THB" || cur2 == "thb"){
+										double n = num * 34.92;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " THB");}
+						            else  if (cur2 == "KRW" || cur2 == "krw"){
+										double n = num * 1314.80;
+									         Console.WriteLine("You converted "+ num+ " USD to "+ Math.Round(n,2)+  " KRW");}
+						    }
+							else{
+							Console.WriteLine("I'm sorry! I can't find that currency please enter available currency.");
+							ConvertionRates();}
+		                }
+		            
+		static void LocalConvertion() //PHP Convert to Any Currency available
+		{
+			AvailableRates();
+			Space();
+			Console.Write("Enter PHP PESO amount you want to convert:  "); 
+			double num1 = Convert.ToDouble(Console.ReadLine());
+			
+			Space();
+			Console.WriteLine("Input currency: ex.USD");Space();
+			Console.Write("To: ");
+			string cur3 = Console.ReadLine();  
+			Line();Space();
+			
+                                    if (cur3 == "AUD" || cur3 == "aud"){ 
+									     double n1 = num1 * 0.0027;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " AUD");}
+                    	            else if (cur3 == "BHD" || cur3 == "bhd"){ 
+									     double n1 = num1 * 0.0069;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " BHD");}
+			                        else  if (cur3 == "GBP" || cur3 == "gbp"){
+									     double n1 = num1 * 0.015;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " GBP");}
+						            else  if (cur3== "CAD" || cur3 == "cad"){
+									     double n1 = num1 * 0.025;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " CAD");}
+						            else  if (cur3 == "CNY" || cur3 == "cny"){
+									     double n1 = num1 * 0.13;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " CNY");}
+						            else  if (cur3 == "DKK" || cur3 == "dkk"){ 
+										 double n1 = num1 * 0.13;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " DKK");}
+						            else  if (cur3 == "AED" || cur3 == "aed"){
+										 double n1 = num1 * 0.067;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " AED");}
+						            else  if (cur3 == "EUR" || cur3 == "eur"){
+										 double n1 = num1 * 0.017;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " EUR");}
+						            else  if (cur3 == "HKD" || cur3 == "hkd"){
+										 double n1 = num1 * 0.14;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " HKD");}
+						            else  if (cur3 == "INR" || cur3 == "inr"){
+										 double n1 = num1 * 1.51;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " INR");}
+						            else  if (cur3 == "JPY" || cur3 == "jpy"){ 
+									     double n1 = num1 * 2.49;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2)  + " JPY");}
+						            else if (cur3 == "KWD" || cur3 == "kwd"){
+										 double n1 = num1 * 0.0056;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " BHD");}
+			                        else  if (cur3 == "MYR" || cur3 == "myr"){
+										 double n1 = num1 * 0.081;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " MYR");}
+						            else  if (cur3 == "MXN" || cur3 == "mxn"){
+										 double n1 = num1 * 0.33;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " MXN");}
+						            else  if (cur3 == "QAR" || cur3 == "qar"){
+										 double n1 = num1 * 0.066;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " QAR");}
+						            else  if (cur3 == "SAR" || cur3 == "sar"){
+										 double n1 = num1 * 0.068;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " SAR");}
+						            else  if (cur3 == "SGD" || cur3 == "sgd"){
+										 double n1 = num1 * 0.025;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + 	" SGD");}
+						            else  if (cur3 == "KRW" || cur3 == "krw"){
+										 double n1 = num1 * 23.94;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " KRW");}
+						            else  if (cur3 == "SEK" || cur3 == "sek"){
+										 double n1 = num1 * 0.19;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " SEK");}
+						            else  if (cur3 == "CHF" || cur3 == "chf"){
+										 double n1 = num1 * 0.017;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " CHF");}
+						            else  if (cur3 == "THB" || cur3 == "thb"){
+										 double n1 = num1 * 0.64;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " THB");}
+						            else  if (cur3 == "USD" || cur3 == "usd"){
+										 double n1 = num1 * 0.018;
+									         Console.WriteLine("You converted "+ num1+ " PHP to " + Math.Round(n1,2) + " USD");}
+									else{
+							                Console.WriteLine("I'm sorry! I can't find that currency please enter available currency.");
+							                ConvertionRates();}
+		}
+		
+	    static void AvailableRates()
+		{
+			Space();
+			Console.WriteLine("_____________________________AVAILABLE CURRENCIES________________________________"); Space();
+			Console.WriteLine("  AUD - Australian Dollar                         KWD - Kuwaiti Dinar  ");Space();
+			Console.WriteLine("  BHD - Bahraini Dinar                            MYR - Malaysian Ringgit");Space();
+		    Console.WriteLine("  GBP - British Pound                             MXN - Mexican Peso  ");Space();
+			Console.WriteLine("  CAD - Canadian Dollar                           QAR - Qatari Riyal");Space();
+			Console.WriteLine("  CNY - Chinese Yuan Renminbi                     SAR - Saudi Arabia RiyaL");Space();
+			Console.WriteLine("  DKK - Danish Krone                              SGD - Singapore Dollar");Space();
+			Console.WriteLine("  AED - Emirati Dirham                            KRW - South Korean Won");Space();
+			Console.WriteLine("  EUR - Euro                                      SEK - Swedish Kron");Space();
+			Console.WriteLine("  HKD - Hong Kong Dollar                          CHF - Swiss Franc");Space();
+			Console.WriteLine("  INR - Indian Rupee                              THB - Thai Baht");Space();
+			Console.WriteLine("  JPY - Japanese Yen                              USD - US Dollar");
+			Line();
+		}
+		
+		static void Looping()
+		{
+			Line();Space();   
+			Console.WriteLine("Do you want to continue using this application? ");
+			Console.WriteLine("Enter any key to continue.");
+			Console.WriteLine("Enter no to exit.");
+			
+			string response = Console.ReadLine();
+				if (response == "no" || response == "NO" || response == "nO" || response == "No"){
+                ExitIdol();}
+				else{
+				Main(null);}	
+		}			
+		static void Space()
+		{
+			Console.WriteLine("  ");
+		}
+		
+		static void Line()
+		{
+			Console.WriteLine("_________________________________________________________________________________");
+		}
+		
+	    static void ExitIdol()
+		{
+		    System.Environment.Exit(1);
+		}
+	}		
+}
